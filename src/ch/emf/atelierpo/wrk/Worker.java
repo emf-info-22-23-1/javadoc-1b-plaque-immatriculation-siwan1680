@@ -6,7 +6,9 @@ package ch.emf.atelierpo.wrk;
  */
 public class Worker {
 
-   /**
+    private final int LONGUEUR_CANTON = 2;
+
+    /**
      *
      * Vérifie si un numéro de plaque de voiture suisse est valide.
      *
@@ -17,7 +19,30 @@ public class Worker {
      * @return true si le numéro de plaque est valide, false sinon
      */
     public boolean controlePlaqueImmatriculation(String canton, String numeroDePlaque) {
-        return false;
+
+        boolean controle = true;
+        String lettreCanton = canton;
+
+        if (lettreCanton.length() != LONGUEUR_CANTON) {
+
+            controle = false;
+
+        } else {
+
+            if (!lettreCanton.equals(lettreCanton.toUpperCase())) {
+
+                controle = false;
+            }
+        }
+
+        try {
+            Integer.valueOf(numeroDePlaque);
+        } catch (NumberFormatException e) {
+            controle = false;
+        }
+
+        return controle;
+
     }
 
 }
