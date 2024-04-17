@@ -22,26 +22,37 @@ public class Worker {
 
         boolean controle = true;
         String lettreCanton = canton;
+        String plaqueImmatriculation = numeroDePlaque;
 
-        if (lettreCanton.length() != LONGUEUR_CANTON) {
+        if (canton != null && numeroDePlaque != null) {
 
-            controle = false;
-
-        } else {
-
-            if (!lettreCanton.equals(lettreCanton.toUpperCase())) {
+            if (lettreCanton.length() != LONGUEUR_CANTON) {
 
                 controle = false;
+
+            } else {
+
+                if (!lettreCanton.equals(lettreCanton.toUpperCase())) {
+
+                    controle = false;
+                }
             }
+
+            try {
+                Integer.valueOf(numeroDePlaque);
+
+            } catch (NumberFormatException e) {
+                controle = false;
+
+            } finally {
+
+                return controle;
+
+            }
+
         }
 
-        try {
-            Integer.valueOf(numeroDePlaque);
-        } catch (NumberFormatException e) {
-            controle = false;
-        }
-
-        return controle;
+        return false;
 
     }
 
